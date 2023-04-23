@@ -42,8 +42,23 @@ RSpec.describe 'Bachelorette Show Page', type: :feature do
       expect(current_path).to eq(bachelorette_contestants_path(@bachelorette_1))
     end
   end
+
+  describe 'User Story 5' do
+    it "When I visit a bachelorette show page, I see the average age of all of that bachelorette's contestants" do
+      visit bachelorette_path(@bachelorette_1)
+
+      within("#bachelorette-info") do
+        expect(page).to have_content("Average Age of Contestants: 27.5")
+      end
+    end
+  end
 end
 
 
-# I'm taken to "/bachelorettes/:bachelorette_id/contestants"
-# and I can see only that bachelorette's contestants
+# User Story 5 of 6
+
+# As a visitor,
+# When I visit a bachelorette show page
+# I see the average age of all of that bachelorette's contestants
+
+# (e.g. "Average Age of Contestants: 29.5")

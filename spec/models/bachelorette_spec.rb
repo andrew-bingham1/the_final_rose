@@ -12,13 +12,19 @@ RSpec.describe Bachelorette, type: :model do
       @contestant_1 = @bachelorette_1.contestants.create!(name: "Peter Kraus", age: 29, hometown: "Westlake Village, CA")
       @contestant_2 = @bachelorette_1.contestants.create!(name: "Tyler Cameron", age: 26, hometown: "Miami, FL")
       @contestant_3 = @bachelorette_2.contestants.create!(name: "Nick Viall", age: 39, hometown: "Chicago, IL")
-      @contestant_4 = @bachelorette_2.contestants.create!(name: "Arie Luyendyk Jr.", age: 39, hometown: "Scottsdale, AZ")
+      @contestant_4 = @bachelorette_2.contestants.create!(name: "Arie Luyendyk Jr.", age: 29, hometown: "Scottsdale, AZ")
       @contestant_5 = @bachelorette_2.contestants.create!(name: "Ben Higgins", age: 29, hometown: "Denver, CO")
     end
 
     it '#bachelorette_contestants' do
       expect(@bachelorette_1.bachelorette_contestants).to eq([@contestant_1, @contestant_2])
       expect(@bachelorette_2.bachelorette_contestants).to eq([@contestant_3, @contestant_4, @contestant_5])
+    end
+
+    it '#average_contestant_age' do
+      expect(@bachelorette_1.average_contestant_age).to eq(27.5)
+      expect(@bachelorette_2.average_contestant_age).to eq(32.33)
+    
     end
   end
 end
