@@ -24,7 +24,13 @@ RSpec.describe Bachelorette, type: :model do
     it '#average_contestant_age' do
       expect(@bachelorette_1.average_contestant_age).to eq(27.5)
       expect(@bachelorette_2.average_contestant_age).to eq(32.33)
-    
+    end
+
+    it '#hometowns' do
+      expect(@bachelorette_1.hometowns).to eq(["Westlake Village, CA", "Miami, FL"])
+      expect(@bachelorette_2.hometowns).to eq(["Chicago, IL", "Scottsdale, AZ", "Denver, CO"])
+      @contestant_6 = @bachelorette_2.contestants.create!(name: "Colton Underwood", age: 29, hometown: "Denver, CO")
+      expect(@bachelorette_2.hometowns).to eq(["Chicago, IL", "Scottsdale, AZ", "Denver, CO"])
     end
   end
 end

@@ -55,10 +55,3 @@ RSpec.describe 'Bachelorette Show Page', type: :feature do
 end
 
 
-# User Story 5 of 6
-
-# As a visitor,
-# When I visit a bachelorette show page
-# I see the average age of all of that bachelorette's contestants
-
-# (e.g. "Average Age of Contestants: 29.5")

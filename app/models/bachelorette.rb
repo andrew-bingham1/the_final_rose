@@ -8,4 +8,8 @@ class Bachelorette <ApplicationRecord
   def average_contestant_age
     contestants.average(:age).round(2)
   end
+
+  def hometowns
+    contestants.pluck(:hometown).uniq
+  end
 end

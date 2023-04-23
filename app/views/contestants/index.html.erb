@@ -5,4 +5,7 @@
     <%= contestant.age %>
     <%= contestant.hometown %>
   </div>
-<% end %>
+  <% end %>
+  <div id="contestant-hometowns">
+    <p> These Contestants are from these hometowns: <%= @bachelorette.hometowns.join(", ") %></p>
+  </div>

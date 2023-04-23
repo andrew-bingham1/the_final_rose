@@ -54,14 +54,35 @@ RSpec.describe 'Contestant Index Page', type: :feature do
       expect(current_path).to eq(contestant_path(@contestant_1))
     end
   end
-end
 
-# User Story 2 of 6
+  describe 'User Story 6' do
+    it "I see a UNIQUE list of all of the hometowns that these contestants are from" do
+      visit bachelorette_contestants_path(@bachelorette_1)
+
+      within("#contestant-hometowns") do
+        expect(page).to have_content("These Contestants are from these hometowns: Westlake Village, CA, Miami, FL")
+      end
+
+      visit bachelorette_contestants_path(@bachelorette_2)
+      
+      within("#contestant-hometowns") do
+        expect(page).to have_content("These Contestants are from these hometowns: Chicago, IL, Scottsdale, AZ, Denver, CO")
+      end
+
+      @contestant_6 = @bachelorette_2.contestants.create!(name: "Ben Higgins", age: 29, hometown: "Denver, CO")
+
+      visit bachelorette_contestants_path(@bachelorette_2)
+
+      within("#contestant-hometowns") do
+        expect(page).to have_content("These Contestants are from these hometowns: Chicago, IL, Scottsdale, AZ, Denver, CO")
+      end
+    end
+  end
+end
 
 # As a visitor,
 # When I visit a bachelorette's contestants index '/bachelorettes/:bachelorette_id/contestants',
-# I see the names of that bachelorette's contestants along with the following information:
-# -Age
-# -Hometown
-# (e.g. "Name: Pilot Pete, Age: 34, Hometown: Irving, TX")
-# And I can click on any contestants name (as a link) to go to that contestants show page "/contestants/:id"
+
+# I see a UNIQUE list of all of the hometowns that these contestants are from.
+
+# (e.g. "These Contestants are from these hometowns: Denver, Aurora, San Diego, Boston")
