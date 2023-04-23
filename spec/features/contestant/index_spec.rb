@@ -17,6 +17,24 @@ RSpec.describe 'Contestant Index Page', type: :feature do
 
       within("#contestant-#{@contestant_1.id}") do
         expect(page).to have_content(@contestant_1.name)
+      end
+
+      within("#contestant-#{@contestant_2.id}") do
+        expect(page).to have_content(@contestant_2.name)
+      end
+
+      expect(page).to_not have_content(@contestant_3.name)
+      expect(page).to_not have_content(@contestant_4.name)
+      expect(page).to_not have_content(@contestant_5.name)
+    end
+  end
+
+  describe 'User Story 2' do
+    it "I see the names of that bachelorette's contestants along with the following information: -Age -Hometown" do
+      visit bachelorette_contestants_path(@bachelorette_1)
+
+      within("#contestant-#{@contestant_1.id}") do
+        expect(page).to have_content(@contestant_1.name)
         expect(page).to have_content(@contestant_1.age)
         expect(page).to have_content(@contestant_1.hometown)
       end
@@ -26,10 +44,24 @@ RSpec.describe 'Contestant Index Page', type: :feature do
         expect(page).to have_content(@contestant_2.age)
         expect(page).to have_content(@contestant_2.hometown)
       end
+    end
 
-      expect(page).to_not have_content(@contestant_3.name)
-      expect(page).to_not have_content(@contestant_4.name)
-      expect(page).to_not have_content(@contestant_5.name)
+    it "I can click on any contestants name (as a link) to go to that contestants show page" do
+      visit bachelorette_contestants_path(@bachelorette_1)
+
+      click_link("#{@contestant_1.name}")
+
+      expect(current_path).to eq(contestant_path(@contestant_1))
     end
   end
 end
+
+# User Story 2 of 6
+
+# As a visitor,
+# When I visit a bachelorette's contestants index '/bachelorettes/:bachelorette_id/contestants',
+# I see the names of that bachelorette's contestants along with the following information:
+# -Age
+# -Hometown
+# (e.g. "Name: Pilot Pete, Age: 34, Hometown: Irving, TX")
+# And I can click on any contestants name (as a link) to go to that contestants show page "/contestants/:id"
