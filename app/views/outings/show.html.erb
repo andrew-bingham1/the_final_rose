@@ -1,1 +1,10 @@
 <h1>Outing Show Page</h1>
+<div id="outing-info">
+  <h2><%= @outing.name %></h2>
+  <p>Location: <%= @outing.location %></p>
+  <p>Date: <%= @outing.date %></p>
+  <p>Count of Contestants: <%= @outing.contestant_count %></p>
+  <div id="outing-contestants">
+    <p> Contestants: <%= @outing.contestant_names.join(", ") %></p>
+  </div>
+</div>
